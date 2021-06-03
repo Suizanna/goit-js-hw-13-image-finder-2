@@ -1,7 +1,7 @@
 import './styles.css';
 import axios from 'axios';
 import template from './templates/imageCard.hbs';
-// import PNotify from 'pnotify/dist/es/PNotify.js';
+import PNotify from 'pnotify/dist/es/PNotify.js';
 
 
 const url = `https://pixabay.com/api/?image_type=photo&orientation=horizontal`;
