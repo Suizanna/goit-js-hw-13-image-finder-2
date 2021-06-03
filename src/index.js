@@ -1,7 +1,7 @@
 import './styles.css';
 import axios from 'axios';
 import template from './templates/imageCard.hbs';
-import PNotify from 'pnotify/dist/es/PNotify.js';
+import errorNotification from './pnotify.js';
 
 
 const url = `https://pixabay.com/api/?image_type=photo&orientation=horizontal`;
@@ -19,17 +19,6 @@ const nextPicture = document.querySelector( `.add-more` );
 let query = ``;
 
 searchForm.addEventListener( `submit`, onSearch )
-
-const pnotifySet = {
-    text: "We did not find any pictures for your request",
-    delay: 3000,
-    addClass: `warning`,
-    width: '250px',
-    remove: true,
-    stack: {
-        context: modalDiv
-    },
-}
 
 const targets = document.getElementsByClassName( 'modal-img' );
 
@@ -77,7 +66,7 @@ function onSearch (event) {
                 nextPicture.disabled = true;
             }
             if( data.length === 0 ) {
-                PNotify.error( pnotifySet );
+              errorNotification('No matches found. Try again.');
             }
             const markup = data.reduce( ( acc, el ) => acc + `<li class="image-card">${template( el )}</li>`, `` );
             ul.insertAdjacentHTML( `beforeend`, markup );
