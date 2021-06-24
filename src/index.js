@@ -33,7 +33,6 @@ var loadImage = function ( entries, observer ) {
         page += 1;
         axios.get( `${url}${query}&page=${page}${perPage}${key}` )
             .then( ( resp ) => {
-          
                 const data = resp.data.hits;
                 const mark = data.reduce( ( acc, el ) => acc + `<li class="image-card">${template( el )}</li>`, `` );
                 ul.insertAdjacentHTML( `beforeend`, mark );
